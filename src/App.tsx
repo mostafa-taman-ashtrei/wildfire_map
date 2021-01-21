@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactMapboxGl from "react-mapbox-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const Map = ReactMapboxGl({ accessToken: process.env.REACT_APP_MAPBOX_TOKEN! });
+
+const App: React.FC = () => (
+  <Map
+    containerStyle={{
+      height: "100vh",
+      width: "100vw",
+    }}
+    center={[139.74803, 35.70543]}
+    zoom={[6]}
+    // eslint-disable-next-line react/style-prop-object
+    style="mapbox://styles/mapbox/streets-v8"
+  />
+);
 
 export default App;
