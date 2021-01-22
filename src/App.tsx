@@ -1,20 +1,26 @@
-import React from 'react';
-import ReactMapboxGl from "react-mapbox-gl";
+import React, { useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const Map = ReactMapboxGl({ accessToken: process.env.REACT_APP_MAPBOX_TOKEN! });
+import fetchData from './api';
+import { apiData } from './interfaces/apiData';
+import Map from './components/map';
 
-const App: React.FC = () => (
-  <Map
-    containerStyle={{
-      height: "100vh",
-      width: "100vw",
-    }}
-    center={[139.74803, 35.70543]}
-    zoom={[6]}
-    // eslint-disable-next-line react/style-prop-object
-    style="mapbox://styles/mapbox/streets-v8"
-  />
-);
+const App: React.FC = () => {
+  const [points, setPoints] = useState<apiData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const getData = async () => {
+    setPoints(await fetchData());
+    setLoading(false);
+  };
+
+  useEffect(() => { getData() }, []);
+
+  if (loading) return <h1>Loading....</h1>
+
+  return (
+    <Map points={points} />
+  )
+};
 
 export default App;
