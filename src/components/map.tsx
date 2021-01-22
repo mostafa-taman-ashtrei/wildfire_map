@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapboxGl, { ZoomControl } from "react-mapbox-gl";
+import ReactMapboxGl, { ZoomControl } from 'react-mapbox-gl';
 
 import { apiData } from '../interfaces/apiData';
 import LocationMarker from './locationMarker';
@@ -18,13 +18,13 @@ const Map: React.FC<props> = ({ points }: props) => {
                 width: "100vw",
             }}
             center={[-95.7129, 37.0902]}
-            zoom={[3]}
+            zoom={[4]}
             // eslint-disable-next-line react/style-prop-object
             style="mapbox://styles/mapbox/streets-v8"
         >
             <>
                 <ZoomControl position="top-left" />
-                { points.map((p: apiData, i: number) => <LocationMarker piont={p} key={i} />)}
+                { points.map((p: apiData, i: number) => <LocationMarker point={p} key={i} />)}
             </>
         </Mapbox>
     )

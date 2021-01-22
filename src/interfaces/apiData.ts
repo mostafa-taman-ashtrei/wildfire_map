@@ -1,6 +1,6 @@
 export interface apiData {
     title: string,
-    date: Date,
+    date?: Date,
     coordinates: [lng: number, lat: number],
     source?: string
 }

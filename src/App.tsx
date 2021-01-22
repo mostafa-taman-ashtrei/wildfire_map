@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import fetchData from './api';
 import { apiData } from './interfaces/apiData';
@@ -16,7 +17,7 @@ const App: React.FC = () => {
 
   useEffect(() => { getData() }, []);
 
-  if (loading) return <h1>Loading....</h1>
+  if (loading) return <LinearProgress />
 
   return (
     <Map points={points} />
